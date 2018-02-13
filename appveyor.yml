@@ -1,0 +1,22 @@
+version: 1.0.{build}
+build_cloud: LinuxGCE
+image: Linux GCE
+
+environment:
+  expected_default_node: v4.
+  expected_lts_node: v8.
+  expected_current_node: v9.
+  expected_stable_node: v9.
+  
+init:
+- appveyor version
+- echo %AVVM_DOWNLOAD_URL%
+
+test_script:
+- sh: |
+    printenv
+
+artifacts:
+  - path: '**\*.txt'
+
+build: off
