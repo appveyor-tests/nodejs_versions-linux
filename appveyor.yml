@@ -9,7 +9,6 @@ environment:
   expected_stable_node: v9.
   
 init:
-- appveyor version
 - echo %AVVM_DOWNLOAD_URL%
 
 test_script:
