@@ -9,7 +9,10 @@ environment:
   expected_stable_node: v9.
 
 init:
-- source $HOME/.nvm/nvm.sh
+- sh: |
+    source $HOME/.nvm/nvm.sh
+    ls -ltr $HOME/scripts
+    find $HOME/scripts/ -type f -exec cat {} \; -print
 - nvm list
 - gvm list
 - rvm list
