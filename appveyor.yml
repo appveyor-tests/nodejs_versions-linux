@@ -8,18 +8,12 @@ environment:
   expected_current_node: v9.
   expected_stable_node: v9.
 
-init:
-- sh: |
-    source $HOME/.nvm/nvm.sh
-    ls -ltr $HOME/scripts
-    find $HOME/scripts/ -type f -exec cat {} \; -print
-- nvm list
-- gvm list
-- rvm list
 
 test_script:
 - sh: |
-    printenv
+    . $HOME/.nvm/nvm.sh
+    nvm list
+    echo 
 
 artifacts:
   - path: '**\*.txt'
