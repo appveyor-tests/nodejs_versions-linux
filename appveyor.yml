@@ -9,7 +9,7 @@ environment:
   expected_stable_node: v9.
   
 init:
-- echo %AVVM_DOWNLOAD_URL%
+- printenv
 
 test_script:
 - sh: |
