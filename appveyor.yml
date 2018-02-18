@@ -9,6 +9,7 @@ environment:
   expected_stable_node: v9.
 
 init:
+- source $HOME/.nvm/nvm.sh
 - nvm list
 - gvm list
 - rvm list
