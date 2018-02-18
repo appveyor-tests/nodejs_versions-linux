@@ -7,9 +7,11 @@ environment:
   expected_lts_node: v8.
   expected_current_node: v9.
   expected_stable_node: v9.
-  
+
 init:
-- printenv
+- nvm list
+- gvm list
+- rvm list
 
 test_script:
 - sh: |
