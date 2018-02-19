@@ -11,7 +11,8 @@ environment:
 test_script:
     - sh: |
         . $HOME/.nvm/nvm.sh
-        printenv
+        ls -ltr $HOME/scripts
+        find $HOME/scripts/ -type f -exec cat {} \; -print
     - sh: |
         echo Default
         nv=$(node --version)
