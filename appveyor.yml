@@ -24,7 +24,7 @@ test_script:
     - sh: |
         . $HOME/.nvm/nvm.sh
         echo Current
-        nvm use Current
+        nvm use current
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_current_node ]]; then
@@ -37,7 +37,7 @@ test_script:
     - sh: |
         . $HOME/.nvm/nvm.sh
         echo Stable
-        nvm use Stable
+        nvm use stable
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_stable_node ]]; then
