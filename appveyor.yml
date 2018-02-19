@@ -23,19 +23,6 @@ test_script:
 
     - sh: |
         . $HOME/.nvm/nvm.sh
-        echo LTS
-        nvm use LTS
-        nv=$(node --version)
-        echo $nv
-        if [[ $nv =~ ^$expected_lts_node ]]; then
-            echo "LTS Node.js version is Correct"
-        else
-            echo "LTS Node.js version should be ${expected_lts_node}.x"
-            exit 1
-        fi
-
-    - sh: |
-        . $HOME/.nvm/nvm.sh
         echo Current
         nvm use Current
         nv=$(node --version)
