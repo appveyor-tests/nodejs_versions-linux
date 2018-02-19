@@ -9,18 +9,29 @@ environment:
 
 
 test_script:
-- sh: |
-    . $HOME/.nvm/nvm.sh
-    versions=( "9.5.0" "8.9.4" "7.10.1" "6.12.3" "4.8.7" "0.12.18" )
-    for version in ${versions[@]}; do
-        nvm use ${version}
-        node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
-        if [ $(node --version) = "v${version}" ]; then
-            echo "Correct version ${version}"
+    - sh:
+        echo Default
+        nv=$(node --version)
+        echo $nv
+        if [ $nv =~ "^$expected_default_node" ]; then
+            echo "Default node version is Correct"
         else
+            echo "Default Node.js version should be ${expected_default_node}.x"
             exit 1
-        fi
-    done
+    fi
+
+    - sh: |
+        . $HOME/.nvm/nvm.sh
+        versions=( "9.5.0" "8.9.4" "7.10.1" "6.12.3" "5.12.0" "4.8.7" )
+        for version in ${versions[@]}; do
+            nvm use ${version}
+            node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
+            if [ $(node --version) = "v${version}" ]; then
+                echo "Correct version ${version}"
+            else
+                exit 1
+            fi
+        done
 
 artifacts:
   - path: '**\*.txt'
