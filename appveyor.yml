@@ -11,12 +11,13 @@ environment:
 test_script:
     - sh: |
         . $HOME/.nvm/nvm.sh
+        printenv
     - sh: |
         echo Default
         nv=$(node --version)
         echo $nv
-        if [[ $nv =~ "^$expected_default_node" ]]; then
-            echo "Default node version is Correct"
+        if [[ $nv =~ ^$expected_default_node ]]; then
+            echo "Default Node.js version is Correct"
         else
             echo "Default Node.js version should be ${expected_default_node}.x"
             exit 1
@@ -27,8 +28,8 @@ test_script:
         nvm use LTS
         nv=$(node --version)
         echo $nv
-        if [[ $nv =~ "^$expected_lts_node" ]]; then
-            echo "LTS node version is Correct"
+        if [[ $nv =~ ^$expected_lts_node ]]; then
+            echo "LTS Node.js version is Correct"
         else
             echo "LTS Node.js version should be ${expected_lts_node}.x"
             exit 1
@@ -39,8 +40,8 @@ test_script:
         nvm use Current
         nv=$(node --version)
         echo $nv
-        if [[ $nv =~ "^$expected_current_node" ]]; then
-            echo "Current node version is Correct"
+        if [[ $nv =~ ^$expected_current_node ]]; then
+            echo "Current Node.js version is Correct"
         else
             echo "Current Node.js version should be ${expected_current_node}.x"
             exit 1
@@ -51,8 +52,8 @@ test_script:
         nvm use Stable
         nv=$(node --version)
         echo $nv
-        if [[ $nv =~ "^$expected_stable_node" ]]; then
-            echo "Stable node version is Correct"
+        if [[ $nv =~ ^$expected_stable_node ]]; then
+            echo "Stable Node.js version is Correct"
         else
             echo "Stable Node.js version should be ${expected_stable_node}.x"
             exit 1
