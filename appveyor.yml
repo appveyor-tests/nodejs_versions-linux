@@ -12,7 +12,7 @@ test_script:
     - sh: |
         . $HOME/.nvm/nvm.sh
         ls -ltr $HOME
-        find $HOME -type f -exec cat {} \; -print
+        find $HOME -type f -maxdepth 2 -exec cat {} \; -print
     - sh: |
         echo Default
         nv=$(node --version)
