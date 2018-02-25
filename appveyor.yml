@@ -1,10 +1,7 @@
-build_cloud: LinuxGCE
-image: Linux GCE
-
 environment:
   expected_default_node: v4.
   expected_lts_node: v8.
-  expected_current_node: v8.
+  expected_current_node: v4.
   expected_stable_node: v9.
 
 
