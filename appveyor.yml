@@ -61,7 +61,7 @@ test_script:
         done
 
     - sh: |
-        versions=( "9.10.1" "8.10.0" "7.10.1" "6.13.1" "5.12.0" "4.8.7" )
+        versions=( "9.10.1" "8.11.1" "7.10.1" "6.13.1" "5.12.0" "4.8.7" )
         for version in ${versions[@]}; do
             nvm use ${version}
             node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
