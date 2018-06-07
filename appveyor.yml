@@ -20,7 +20,7 @@ test_script:
             echo "Current Node.js version is Correct"
         else
             echo "Current Node.js version should be ${expected_current_node}.x"
-            exit 1
+            return 1
         fi
 
     - sh: |
@@ -31,7 +31,7 @@ test_script:
             echo "Default Node.js version is Correct"
         else
             echo "Default Node.js version should be ${expected_default_node}.x"
-            exit 1
+            return 1
         fi
 
     - sh: |
@@ -43,7 +43,7 @@ test_script:
             echo "LTS Node.js version is Correct"
         else
             echo "LTS Node.js version should be ${expected_lts_node}.x"
-            exit 1
+            return 1
         fi
 
     - sh: |
