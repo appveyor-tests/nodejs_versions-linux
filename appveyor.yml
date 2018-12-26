@@ -59,14 +59,14 @@ test_script:
         fi
 
     - sh: |
-        for version in "4" "5" "6" "7" "8" "9"; do
+        for version in "4" "5" "6" "7" "8" "9" "10" "11"; do
             echo "Latest ${version}.x:"
             nvm use $version
             node --version
         done
 
     - sh: |
-        versions=( "11.4.0" "10.14.2" "9.11.2" "8.14.0" "7.10.1" "6.15.1" "5.12.0" "4.9.1" )
+        versions=( "11.5.0" "10.14.2" "9.11.2" "8.14.1" "7.10.1" "6.15.1" "5.12.0" "4.9.1" )
         for version in ${versions[@]}; do
             nvm use ${version}
             node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
