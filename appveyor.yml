@@ -7,7 +7,7 @@ environment:
   expected_default_node: v4.
   expected_lts_node: v10.
   expected_current_node: v4.
-  expected_stable_node: v11.
+  expected_stable_node: v12.
 
 
 test_script:
@@ -59,14 +59,14 @@ test_script:
         fi
 
     - sh: |
-        for version in "4" "5" "6" "7" "8" "9" "10" "11"; do
+        for version in "4" "5" "6" "7" "8" "9" "10" "11" "12"; do
             echo "Latest ${version}.x:"
             nvm use $version
             node --version
         done
 
     - sh: |
-        versions=( "11.6.0" "10.15.0" "9.11.2" "8.15.0" "7.10.1" "6.16.0" "5.12.0" "4.9.1" )
+        versions=( "12.3.1" "11.15.0" "10.16.0" "9.11.2" "8.16.0" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
         for version in ${versions[@]}; do
             nvm use ${version}
             node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
