@@ -2,7 +2,26 @@ init:
 - appveyor version
 - sh: echo $APPVEYOR_BUILD_WORKER_CLOUD
 - sh: echo $APPVEYOR_BUILD_WORKER_IMAGE
-
+- sh: |
+    # Only use colors if connected to a terminal
+    if [ -t 1 ]; then
+      RED=$(printf '\033[31m')
+      GREEN=$(printf '\033[32m')
+      YELLOW=$(printf '\033[33m')
+      BLUE=$(printf '\033[34m')
+      BOLD=$(printf '\033[1m')
+      RESET=$(printf '\033[m')
+      NC=$(printf '\033[m')
+    else
+      RED=""
+      GREEN=""
+      YELLOW=""
+      BLUE=""
+      BOLD=""
+      RESET=""
+      NC=""
+    fi
+    
 environment:
   expected_default_node: v4.
   expected_lts_node: v10.
@@ -17,9 +36,9 @@ test_script:
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_current_node ]]; then
-            echo "Current Node.js version is Correct"
+            echo "${GREEN}Current Node.js version is Correct${NC}"
         else
-            echo "Current Node.js version should be ${expected_current_node}.x"
+            echo "${RED}Current Node.js version should be '${expected_current_node}.x'${NC}"
             return 1
         fi
 
@@ -28,9 +47,9 @@ test_script:
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_default_node ]]; then
-            echo "Default Node.js version is Correct"
+            echo "${GREEN}Default Node.js version is Correct${NC}"
         else
-            echo "Default Node.js version should be ${expected_default_node}.x"
+            echo "${RED}Default Node.js version should be '${expected_default_node}.x'${NC}"
             return 1
         fi
 
@@ -40,9 +59,9 @@ test_script:
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_lts_node ]]; then
-            echo "LTS Node.js version is Correct"
+            echo "${GREEN}LTS Node.js version is Correct${NC}"
         else
-            echo "LTS Node.js version should be ${expected_lts_node}.x"
+            echo "${RED}LTS Node.js version should be '${expected_lts_node}.x'${NC}"
             return 1
         fi
 
@@ -52,9 +71,9 @@ test_script:
         nv=$(node --version)
         echo $nv
         if [[ $nv =~ ^$expected_stable_node ]]; then
-            echo "Stable Node.js version is Correct"
+            echo "${GREEN}Stable Node.js version is Correct${NC}"
         else
-            echo "Stable Node.js version should be ${expected_stable_node}.x"
+            echo "${RED}Stable Node.js version should be '${expected_stable_node}.x'${NC}"
             exit 1
         fi
 
@@ -68,12 +87,15 @@ test_script:
     - sh: |
         versions=( "12.10.0" "11.15.0" "10.16.3" "9.11.2" "8.16.1" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
         for version in ${versions[@]}; do
-            nvm use ${version}
+            if ! nvm use ${version}; then 
+               echo "${RED} nvm cant use version '${version}' ${NC}"
+               exit 1
+            fi
             node --version >${APPVEYOR_BUILD_FOLDER}/${version}.txt
             if [ $(node --version) = "v${version}" ]; then
-                echo "Correct version ${version}"
+                echo "${GREEN}Correct version ${version}${NC}"
             else
-                return 1
+                exit 1
             fi
         done
 
