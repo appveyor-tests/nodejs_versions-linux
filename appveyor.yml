@@ -85,7 +85,7 @@ test_script:
         done
 
     - sh: |
-        versions=( "12.10.0" "11.15.0" "10.16.3" "9.11.2" "8.16.1" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
+        versions=( "12.11.0" "11.15.0" "10.16.3" "9.11.2" "8.16.1" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
         for version in ${versions[@]}; do
             if ! nvm use ${version}; then 
                echo "${RED} nvm cant use version '${version}' ${NC}"
