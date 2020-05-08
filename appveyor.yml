@@ -31,6 +31,7 @@ environment:
 
 
 test_script:
+    - sh: nvm --version
     - sh: |
         echo Current
         nvm use current
