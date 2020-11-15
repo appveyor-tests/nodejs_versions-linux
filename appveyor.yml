@@ -32,7 +32,6 @@ environment:
 test_script:
     - sh: nvm --version
     - sh: nvm list
-    - sh: ls -al /opt/appveyor/build-agent
     
     - sh: |
         echo Default
