@@ -24,10 +24,9 @@ init:
     fi
     
 environment:
-  expected_default_node: v12.
-  expected_lts_node: v12.
-  expected_current_node: v12.
-  expected_stable_node: v14.
+  expected_default_node: v8.
+  expected_lts_node: v14.
+  expected_stable_node: v15.
 
 
 test_script:
@@ -42,18 +41,6 @@ test_script:
             echo "${GREEN}Default Node.js version is Correct${NC}"
         else
             echo "${RED}Default Node.js version should be '${expected_default_node}.x'${NC}"
-            exit 1
-        fi    
-    
-    - sh: |
-        echo Current
-        nvm use current
-        nv=$(node --version)
-        echo $nv
-        if [[ $nv =~ ^$expected_current_node ]]; then
-            echo "${GREEN}Current Node.js version is Correct${NC}"
-        else
-            echo "${RED}Current Node.js version should be '${expected_current_node}.x'${NC}"
             exit 1
         fi
 
@@ -82,14 +69,14 @@ test_script:
         fi
 
     - sh: |
-        for version in "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14"; do
+        for version in "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15"; do
             echo "Latest ${version}.x:"
             nvm use $version
             node --version
         done
 
     - sh: |
-        versions=( "14.4.0" "13.14.0" "12.18.0" "11.15.0" "10.21.0" "9.11.2" "8.17.0" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
+        versions=( "15.2.0" "14.15.0" "13.14.0" "12.19.0" "11.15.0" "10.23.0" "9.11.2" "8.17.0" "7.10.1" "6.17.1" "5.12.0" "4.9.1" )
         for version in ${versions[@]}; do
             if ! nvm use ${version}; then 
                echo "${RED} nvm cant use version '${version}' ${NC}"
