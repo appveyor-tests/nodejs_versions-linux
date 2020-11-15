@@ -89,7 +89,6 @@ test_script:
                 exit 1
             fi
         done
-    - sh: ls -al /opt/appveyor/build-agent
 
 artifacts:
   - path: '**\*.txt'
