@@ -94,3 +94,6 @@ artifacts:
   - path: '**\*.txt'
 
 build: off
+
+on_failure:
+- sh: ls -al /opt/appveyor/build-agent
