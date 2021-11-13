@@ -26,7 +26,7 @@ init:
 environment:
   expected_default_node: v8.
   expected_lts_node: v16.
-  expected_stable_node: v16.
+  expected_stable_node: v17.
 
 
 test_script:
