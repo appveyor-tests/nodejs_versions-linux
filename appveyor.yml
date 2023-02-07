@@ -25,7 +25,7 @@ init:
     
 environment:
   expected_default_node: v16.
-  expected_lts_node: v16.
+  expected_lts_node: v18.
   expected_stable_node: v19.
 
 
