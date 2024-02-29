@@ -25,7 +25,7 @@ init:
     
 environment:
   expected_default_node: v16.
-  expected_lts_node: v18.
+  expected_lts_node: v20.
   expected_stable_node: v20.
 
 
@@ -76,7 +76,7 @@ test_script:
         done
 
     - sh: |
-        versions=( "19.9.0" "18.17.1" "17.9.1" "16.20.2" "15.14.0" "14.21.3" "13.14.0" "12.22.12" "11.15.0" "10.24.1" "9.11.2" "8.17.0" )
+        versions=( "19.9.0" "18.19.1" "17.9.1" "16.20.2" "15.14.0" "14.21.3" "13.14.0" "12.22.12" "11.15.0" "10.24.1" "9.11.2" "8.17.0" )
         for version in ${versions[@]}; do
             if ! nvm use ${version}; then 
                echo "${RED} nvm cant use version '${version}' ${NC}"
