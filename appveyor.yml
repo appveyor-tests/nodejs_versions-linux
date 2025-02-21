@@ -25,8 +25,8 @@ init:
     
 environment:
   expected_default_node: v22.
-  expected_lts_node: v20.
-  expected_stable_node: v22.
+  expected_lts_node: v22.
+  expected_stable_node: v23.
 
 
 test_script:
